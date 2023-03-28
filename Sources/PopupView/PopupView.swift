@@ -1,33 +1,32 @@
 import UIKit
 
-public class PopupViewNew: UIView, PopupViewDelegate {
-    func exitPopUp() {
-        for view in self.subviews {
+public class PopupViewNew: PopupViewDelegate {
+    
+    public static let shared: PopupViewNew = PopupViewNew()
+    
+    private var views : [UIView] = []
+    private var index: Int8 = 0
+    
+    public init() {}
+    
+    public func setupView(header: PopupHeaderData, view: UIView, frame: CGRect) -> UIView? {
+        guard let popup = UIView().loadView(name: "NewPopupView", conformance: View.self) else {return nil}
+
+        popup.delegate = self
+        popup.setView(view:view)
+        popup.frame = frame
+        views.append(popup)
+
+        return popup
+    }
+    
+    public func exitPopUp() {
+        views.removeLast()
+    }
+    
+    public func exitAll() {
+        for view in views {
             view.removeFromSuperview()
         }
-        self.removeFromSuperview()
-    }
-    
-    public convenience init(frame: CGRect, header: PopupHeaderData, view: UIView) {
-        self.init(frame: frame)
-        setupView(header:header, view: view)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    public func setupView(header: PopupHeaderData, view: UIView) {
-        guard let popup = UIView().loadView(name: "NewPopupView", conformance: View.self) else {return}
-        popup.delegate = self
-        popup.frame = frame
-        
-        popup.setView(view:view)
-
-        self.addSubview(popup)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
