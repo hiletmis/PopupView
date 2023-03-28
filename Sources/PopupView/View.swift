@@ -12,7 +12,9 @@ import UIKit
 
 class View: UIView {
     @IBOutlet weak var content: UIView!
+    @IBOutlet weak var canvas: UIView!
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var classicHeader: UIView!
     
     var isAnimation: Bool = false
     var startPanLocation: CGPoint?
@@ -103,13 +105,14 @@ class View: UIView {
     }
     
     func setView(view: UIView) {
+        classicHeader.isHidden = true
         content.layer.masksToBounds = true
         view.clipsToBounds = true
         view.frame = CGRect(x: 0,
                             y: 0,
                             width: content.frame.width,
                             height: content.frame.height)
-        content.addSubview(view)
+        canvas.addSubview(view)
     }
     
 }
