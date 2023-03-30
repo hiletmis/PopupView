@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class View: UIView {
     @IBOutlet weak var content: UIView!
     @IBOutlet weak var canvas: UIView!

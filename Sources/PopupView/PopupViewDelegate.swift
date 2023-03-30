@@ -7,4 +7,6 @@
 
 protocol PopupViewDelegate: AnyObject {
     func exitPopUp()
+    func exitAll()
+    func exitPopUp(completion: @escaping()->())
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-public class PopupViewNew: PopupViewDelegate {
+public class PopupViewNew {
     
     public static let shared: PopupViewNew = PopupViewNew()
     
@@ -9,7 +9,7 @@ public class PopupViewNew: PopupViewDelegate {
     
     public init() {}
     
-    public func setupView(header: PopupHeaderData, view: UIView, frame: CGRect) -> UIView? {
+    public func setPopupView(header: PopupHeaderData, view: UIView, frame: CGRect) -> UIView? {
         guard let popup = UIView().loadView(name: "NewPopupView", conformance: View.self) else {return nil}
 
         popup.delegate = self
@@ -20,13 +20,48 @@ public class PopupViewNew: PopupViewDelegate {
         return popup
     }
     
+    public func setFullscreenView(view: UIView, frame: CGRect) -> UIView? {
+        guard let popup = UIView().loadView(name: "FullscreenView",
+                                            conformance: FullscreenViewController.self) else {return nil}
+        popup.delegate = self
+        popup.setView(view:view)
+        popup.frame = frame
+        views.append(popup)
+        return popup
+    }
+}
+
+extension PopupViewNew: PopupViewDelegate {
     public func exitPopUp() {
-        views.removeLast()
+        if let view = views.last {
+            UIView.animate(withDuration: 1, animations: {
+                view.frame.origin.x = -1 * view.frame.width
+            }) {_ in
+                view.removeFromSuperview()
+                self.views.removeLast()
+            }
+        }
     }
     
     public func exitAll() {
         for view in views {
-            view.removeFromSuperview()
+            UIView.animate(withDuration: 1, animations: {
+                view.frame.origin.x = -1 * view.frame.width
+            }) {_ in
+                view.removeFromSuperview()
+            }
+        }
+    }
+    
+    public func exitPopUp(completion: @escaping ()->()) {
+        if let view = views.last {
+            UIView.animate(withDuration: 1, animations: {
+                view.frame.origin.x = -1 * view.frame.width
+            }) {_ in
+                view.removeFromSuperview()
+                self.views.removeLast()
+                completion()
+            }
         }
     }
 }
