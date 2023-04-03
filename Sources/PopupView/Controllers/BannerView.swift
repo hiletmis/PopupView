@@ -31,7 +31,6 @@ class BannerView: UIView {
         }
     }
     
-
     func setUI() {
         self.layer.cornerRadius = Constants.CORNER_RADIUS
         banner.layer.cornerRadius = 3
