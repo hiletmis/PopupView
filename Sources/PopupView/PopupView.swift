@@ -1,4 +1,5 @@
 import UIKit
+import Models
 
 public class PopupViewNew {
     

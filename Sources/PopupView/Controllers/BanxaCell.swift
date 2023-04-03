@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Models
 
 class BanxaCell: UITableViewCell {
     @IBOutlet weak var tokenIcon: UIImageView!

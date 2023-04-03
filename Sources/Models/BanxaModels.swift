@@ -12,54 +12,54 @@ public class BanxaModels: NSObject {
   
     // MARK: - BanxaDapp
     public struct BanxaDapp: Codable {
-        let token: String
-        let tokenSymbol: String
-        var walletAddress: String?
-        let blockchain: String
+        public let token: String
+        public let tokenSymbol: String
+        public var walletAddress: String?
+        public let blockchain: String
     }
 
 
     // MARK: - BanxaTransaction
     public struct BanxaTransaction: Codable {
-        let token: String
-        let tokenSymbol: String
-        let amount: Int64
-        let decimal: Int
-        let fiat: Double
-        let fiatType: String
-        let status: Int
-        let paymentMethod: String
+        public let token: String
+        public let tokenSymbol: String
+        public let amount: Int64
+        public let decimal: Int
+        public let fiat: Double
+        public let fiatType: String
+        public let status: Int
+        public let paymentMethod: String
     }
 
     // MARK: - BanxaRequest
     public struct BanxaRequest: Codable {
-        let wallet, fiat, coin: String
-        let amount: Int
-        let gatewayAddress, blockchain: String
-        var signed, publicKey: String?
-        var timestamp: Int64?
+        public let wallet, fiat, coin: String
+        public let amount: Int
+        public let gatewayAddress, blockchain: String
+        public var signed, publicKey: String?
+        public var timestamp: Int64?
     }
 
     // MARK: - BanxaGetOrders
     public struct BanxaGetOrders: Codable {
-        let wallet: String
-        var signed, publicKey: String?
-        var timestamp: Int64?
+        public let wallet: String
+        public var signed, publicKey: String?
+        public var timestamp: Int64?
     }
     // MARK: - BanxaResponse
     public struct BanxaResponse: Codable {
-        let order: Order
+        public let order: Order
     }
 
     // MARK: - Order
     public struct Order: Codable {
-        let id, accountID, accountReference, orderType: String
-        let fiatCode: String
-        let fiatAmount: Int
-        let coinCode, walletAddress: String
-        let blockchain: Blockchain
-        let createdAt: String
-        let checkoutURL: String
+        public let id, accountID, accountReference, orderType: String
+        public let fiatCode: String
+        public let fiatAmount: Int
+        public let coinCode, walletAddress: String
+        public let blockchain: Blockchain
+        public let createdAt: String
+        public let checkoutURL: String
 
         enum CodingKeys: String, CodingKey {
             case id
@@ -78,8 +78,8 @@ public class BanxaModels: NSObject {
 
     // MARK: - Blockchain
     public struct Blockchain: Codable {
-        let id: Int?
-        let code, blockchainDescription: String
+        public let id: Int?
+        public let code, blockchainDescription: String
 
         enum CodingKeys: String, CodingKey {
             case id, code
@@ -89,25 +89,25 @@ public class BanxaModels: NSObject {
      
     // MARK: - BanxaOrdersResponseElement
     public struct BanxaOrdersResponseElement: Codable {
-        let id, accountID, accountReference, orderType: String
-        let ref: Int
-        let country, fiatCode: String
-        let fiatAmount: Int64
-        let coinCode: String
-        let coinAmount: Double
-        let walletAddress: String
-        let walletAddressTag: String?
-        let fee, feeTax: Int
-        let paymentFee: Double
-        let paymentFeeTax, commission: Int
-        let txHash: String?
-        let txConfirms: Int
-        let createdDate, createdAt, paymentType, status: String
-        let completedAt: String?
-        let merchantFee: Double
-        let merchantCommission: Int
-        let metaData: String?
-        let blockchain: Blockchain
+        public let id, accountID, accountReference, orderType: String
+        public let ref: Int
+        public let country, fiatCode: String
+        public let fiatAmount: Int64
+        public let coinCode: String
+        public let coinAmount: Double
+        public let walletAddress: String
+        public let walletAddressTag: String?
+        public let fee, feeTax: Int
+        public let paymentFee: Double
+        public let paymentFeeTax, commission: Int
+        public let txHash: String?
+        public let txConfirms: Int
+        public let createdDate, createdAt, paymentType, status: String
+        public let completedAt: String?
+        public let merchantFee: Double
+        public let merchantCommission: Int
+        public let metaData: String?
+        public let blockchain: Blockchain
 
         enum CodingKeys: String, CodingKey {
             case id
