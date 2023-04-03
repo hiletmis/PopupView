@@ -11,7 +11,7 @@ import Foundation
 public class BanxaModels: NSObject {
   
     // MARK: - BanxaDapp
-    struct BanxaDapp: Codable {
+    public struct BanxaDapp: Codable {
         let token: String
         let tokenSymbol: String
         var walletAddress: String?
@@ -20,7 +20,7 @@ public class BanxaModels: NSObject {
 
 
     // MARK: - BanxaTransaction
-    struct BanxaTransaction: Codable {
+    public struct BanxaTransaction: Codable {
         let token: String
         let tokenSymbol: String
         let amount: Int64
@@ -32,7 +32,7 @@ public class BanxaModels: NSObject {
     }
 
     // MARK: - BanxaRequest
-    struct BanxaRequest: Codable {
+    public struct BanxaRequest: Codable {
         let wallet, fiat, coin: String
         let amount: Int
         let gatewayAddress, blockchain: String
@@ -41,18 +41,18 @@ public class BanxaModels: NSObject {
     }
 
     // MARK: - BanxaGetOrders
-    struct BanxaGetOrders: Codable {
+    public struct BanxaGetOrders: Codable {
         let wallet: String
         var signed, publicKey: String?
         var timestamp: Int64?
     }
     // MARK: - BanxaResponse
-    struct BanxaResponse: Codable {
+    public struct BanxaResponse: Codable {
         let order: Order
     }
 
     // MARK: - Order
-    struct Order: Codable {
+    public struct Order: Codable {
         let id, accountID, accountReference, orderType: String
         let fiatCode: String
         let fiatAmount: Int
@@ -77,7 +77,7 @@ public class BanxaModels: NSObject {
     }
 
     // MARK: - Blockchain
-    struct Blockchain: Codable {
+    public struct Blockchain: Codable {
         let id: Int?
         let code, blockchainDescription: String
 
@@ -88,7 +88,7 @@ public class BanxaModels: NSObject {
     }
      
     // MARK: - BanxaOrdersResponseElement
-    struct BanxaOrdersResponseElement: Codable {
+    public struct BanxaOrdersResponseElement: Codable {
         let id, accountID, accountReference, orderType: String
         let ref: Int
         let country, fiatCode: String

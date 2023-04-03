@@ -49,6 +49,14 @@ extension UIImageView {
     }
 }
 
+extension UITableViewCell
+{
+    func loadXib(name: String) -> UITableViewCell {
+        return Bundle.module.loadNibNamed(name, owner: self, options: nil)?.first as! UITableViewCell
+    }
+}
+
+
 
 extension Double {
    func removeZerosFromEnd() -> String {

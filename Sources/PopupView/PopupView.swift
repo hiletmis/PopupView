@@ -29,6 +29,12 @@ public class PopupViewNew {
         views.append(popup)
         return popup
     }
+    
+    public func setBanxaCell(model: BanxaModels.BanxaOrdersResponseElement) -> UITableViewCell {
+        let cell = UITableViewCell().loadXib(name: "BanxaCell") as! BanxaCell
+        cell.setCell(model: model)
+        return cell
+    }
 }
 
 extension PopupViewNew: PopupViewDelegate {
