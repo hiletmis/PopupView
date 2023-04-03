@@ -48,3 +48,89 @@ extension UIImageView {
         downloaded(from: url, contentMode: mode)
     }
 }
+
+
+extension Double {
+   func removeZerosFromEnd() -> String {
+       let formatter = NumberFormatter()
+       let number = NSNumber(value: self)
+       formatter.minimumFractionDigits = 0
+       formatter.maximumFractionDigits = 16
+       return String.init(format: formatter.string(from: number) ?? "")
+   }
+   
+  func fitToDecimal(_ decimal: Int) -> String {
+      let numberFormatter = NumberFormatter()
+      let number = NSNumber(value: self)
+      
+      numberFormatter.groupingSeparator = ","
+      numberFormatter.groupingSize = 3
+      numberFormatter.usesGroupingSeparator = true
+      numberFormatter.decimalSeparator = "."
+      numberFormatter.numberStyle = .decimal
+      numberFormatter.maximumFractionDigits = decimal
+      
+      numberFormatter.minimumFractionDigits = 0
+      numberFormatter.maximumFractionDigits = decimal
+      return String.init(format: numberFormatter.string(from: number) ?? "")
+  }
+   
+   func percentage() -> String{
+      return self.fitToDecimal(2) + "%"
+   }
+   
+  func fitToGwei(_ decimal: Int) -> String {
+      let numberFormatter = NumberFormatter()
+      let number = NSNumber(value: self)
+       
+      numberFormatter.usesGroupingSeparator = false
+      numberFormatter.decimalSeparator = "."
+      numberFormatter.numberStyle = .decimal
+      numberFormatter.maximumFractionDigits = decimal
+      
+      numberFormatter.minimumFractionDigits = decimal
+      return String.init(format: numberFormatter.string(from: number) ?? "")
+  }
+  
+   func df2so(decimal: Int = 2) -> String {
+       let numberFormatter = NumberFormatter()
+       let number = NSNumber(value: self)
+
+       numberFormatter.groupingSeparator = ","
+       numberFormatter.groupingSize = 3
+       numberFormatter.usesGroupingSeparator = true
+       numberFormatter.decimalSeparator = "."
+       numberFormatter.numberStyle = .decimal
+       numberFormatter.maximumFractionDigits = decimal
+ 
+       if number.doubleValue.isNaN {
+           return "0"
+       }
+       
+       return numberFormatter.string(from: number)!
+   }
+     
+   func rounded(_ decimal:Int) -> Double {
+       let divisor = pow(10.0, Double(decimal))
+       return (self * divisor).rounded() / divisor
+   }
+    
+   func d2Int(_ decimal:Int) -> Int64 {
+       let divisor = pow(10.0, Double(decimal))
+       let result = self * divisor
+       if result > Double.init(INT64_MAX)  {
+        return 0
+       }
+       
+       if result.isNaN {
+           return 0
+       }
+       
+       return Int64((result))
+   }
+   
+   func symbolize(decimal: Int, coin: String) -> String {
+       return String(format: "%@ %@", self.df2so(decimal: decimal), coin)
+   }
+}
+
