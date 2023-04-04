@@ -10,6 +10,7 @@ let package = Package(
         .library(
             name: "PopupView",
             targets: ["PopupView"]),
+        
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -27,5 +28,6 @@ let package = Package(
         .testTarget(
             name: "PopupViewTests",
             dependencies: ["PopupView"]),
+        
     ]
 )

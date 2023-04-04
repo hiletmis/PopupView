@@ -54,3 +54,15 @@ public struct PopupHeaderData {
     }
     
 }
+
+public struct BalanceModel: Codable {
+    public let tokenName:String
+    public let token:String
+    public let symbol: String
+    public let decimal: Int
+    public var balance: Double
+    public var exchange: Double
+    public var price: Double
+    public let network: String
+    public let imgUrl: String?
+}

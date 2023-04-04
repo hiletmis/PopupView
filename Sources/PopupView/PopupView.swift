@@ -10,6 +10,8 @@ public class PopupViewNew {
     
     public init() {}
     
+    public var isBalanceHidden: Bool = false
+    
     public func setPopupView(header: PopupHeaderData, view: UIView, frame: CGRect) -> UIView? {
         guard let popup = UIView().loadView(name: "NewPopupView", conformance: View.self) else {return nil}
 
@@ -34,6 +36,12 @@ public class PopupViewNew {
     public func setBanxaCell(model: BanxaModels.BanxaOrdersResponseElement) -> UITableViewCell {
         let cell = UITableViewCell().loadXib(name: "BanxaCell") as! BanxaCell
         cell.setCell(model: model)
+        return cell
+    }
+    
+    public func setCoinTableCell(model: BalanceModel, icon: UIImage) -> UITableViewCell {
+        let cell = UITableViewCell().loadXib(name: "CoinTableViewCell") as! CoinTableViewCell
+        cell.setModel(model:model, icon: icon)
         return cell
     }
 }
