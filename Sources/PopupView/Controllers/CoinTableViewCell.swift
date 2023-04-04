@@ -20,6 +20,8 @@ class CoinTableViewCell: UITableViewCell {
     
     var model: BalanceModel?
  
+    weak var delegate: CoinTableDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -39,6 +41,13 @@ class CoinTableViewCell: UITableViewCell {
         }
          
         coinPrice.text = "$" + model.price.df2so()
+        
+        self.tapGesture(self, #selector(navigate))
+    }
+    
+    @objc func navigate() {
+        guard let model = model else { return }
+        delegate?.clickIcon(coin: model)
     }
 }
  

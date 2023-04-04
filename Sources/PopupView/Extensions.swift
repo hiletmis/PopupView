@@ -26,6 +26,14 @@ extension UIView {
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.masksToBounds = false
     }
+    
+    func tapGesture(_ target: Any, _ void: Selector) {
+        self.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer.init(target: target, action: void)
+        tap.numberOfTapsRequired = 1
+        self.addGestureRecognizer(tap)
+    }
+   
 }
 
 extension UIImageView {
